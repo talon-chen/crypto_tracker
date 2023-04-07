@@ -41,98 +41,100 @@ class _PriceScreenState extends State<PriceScreen> {
       appBar: AppBar(
         title: const Text('💲 Talon\'s Crypto Tracker 💲'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-                child: Card(
-                  color: Colors.black38,
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 28.0),
-                    child: Text(
-                      '1 BTC = $btcPrice $currency',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+                  child: Card(
+                    color: Colors.black38,
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 28.0),
+                      child: Text(
+                        '1 BTC = $btcPrice $currency',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-                child: Card(
-                  color: Colors.black38,
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 28.0),
-                    child: Text(
-                      '1 ETH = $ethPrice $currency',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+                  child: Card(
+                    color: Colors.black38,
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 28.0),
+                      child: Text(
+                        '1 ETH = $ethPrice $currency',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-                child: Text(
-                  'Last Updated At: $lastUpdated',
-                  style: const TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+                  child: Text(
+                    'Last Updated At: $lastUpdated',
+                    style: const TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(bottom: 30.0),
-            color: Colors.black38,
-            child: DropdownButton<String>(
-              underline: Container(
-                height: 2,
-                color: Colors.white,
-              ),
-              menuMaxHeight: 200.0,
-              enableFeedback: true,
-              value: currency,
-              items:
-                  currenciesList.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? value) {
-                setState(() {
-                  currency = value!;
-                  updateUI();
-                });
-              },
+              ],
             ),
-          ),
-        ],
+            Container(
+              height: 100.0,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(bottom: 20.0),
+              color: Colors.black38,
+              child: DropdownButton<String>(
+                underline: Container(
+                  height: 2,
+                  color: Colors.white,
+                ),
+                menuMaxHeight: 200.0,
+                enableFeedback: true,
+                value: currency,
+                items: currenciesList
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    currency = value!;
+                    updateUI();
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
